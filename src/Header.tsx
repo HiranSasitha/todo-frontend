@@ -26,6 +26,9 @@ const Header = () => {
                 <Link className="nav-link" to={"/"}>Home</Link>
               </li>
               <li className="nav-item">
+                <Link className="nav-link" to={"/completed-todo"}>Completed Task</Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" to={"/add-todo"}>Add Todo</Link>
               </li>
             </ul>

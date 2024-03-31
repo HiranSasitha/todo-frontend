@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Todo } from "./model/todo";
 import axios from "axios";
 import Footer from "./Footer";
 import Header from "./Header";
+import { Link } from "react-router-dom";
 
-
-
-const Home: React.FC = () => {
+const CompletedTask: React.FC = () => {
     const [todo, setTodo] = useState<Todo[] | null>(null);
 
     useEffect(() => {
@@ -15,10 +13,10 @@ const Home: React.FC = () => {
     }, []);
 
 
-    const getAllTodo = async () => {  //get to-do item
+    const getAllTodo = async () => {  //get completed to-do item
         try {
 
-            const response = await axios.get("https://localhost:7035/api/TodoItem/get-all-unavailable-todo-items");
+            const response = await axios.get("https://localhost:7035/api/TodoItem/get-all-available-todo-items");
             console.log(response.data);
             console.log(response);
             setTodo(response.data);
@@ -32,7 +30,7 @@ const Home: React.FC = () => {
 
         try {
 
-            const response = await axios.get("https://localhost:7035/api/TodoItem/get-all-unavailable-todo-items-orderby-title");
+            const response = await axios.get("https://localhost:7035/api/TodoItem/get-all-available-todo-items-orderby-title");
             console.log(response.data);
             console.log(response);
             setTodo(response.data);
@@ -61,10 +59,10 @@ const Home: React.FC = () => {
     }
 
     const updateComplted = async(id:number) => {
-          //update todo as completed
+          //update todo as Active
         try {
 
-            const response = await axios.put(`https://localhost:7035/api/TodoItem/update-todo-item-completed/${id}`);
+            const response = await axios.put(`https://localhost:7035/api/TodoItem/update-todo-item-activate/${id}`);
             window.location.reload()  // reload page
 
         } catch (error) {
@@ -91,7 +89,7 @@ const Home: React.FC = () => {
             <Header />
 
             <div className="text-center my-4">
-                <h2 className="k1">TO-DO</h2>
+                <h2 className="k1">Completed Task</h2>
             </div>
 
             <div className="className mb-5 d-flex justify-content-end">
@@ -123,7 +121,7 @@ const Home: React.FC = () => {
 
                             <td>
                                 <button type='button' onClick={() => updateComplted(emp.id)} className="btn btn-outline-success"  >
-                                    Complete Task
+                                    Activate Task
                                 </button>
                             </td>
 
@@ -154,4 +152,4 @@ const Home: React.FC = () => {
 
 }
 
-export default Home;
+export default CompletedTask;

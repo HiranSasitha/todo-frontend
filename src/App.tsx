@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import AddTodo from './AddTodo';
 import UpdateTaskItem from './UpdateTaskItem';
+import CompletedTask from './CompletedTask';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <Route index element ={<Home/>}/>
     <Route path='/add-todo' element ={<AddTodo/>}/>
     <Route path='/update-todo/:id' element ={<UpdateTaskItem/>}/>
+    <Route path='/completed-todo' element ={<CompletedTask/>}/>
 
 
     </Routes>
