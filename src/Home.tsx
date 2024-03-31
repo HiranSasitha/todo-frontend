@@ -1,52 +1,79 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Todo } from "./model/todo";
+import axios from "axios";
+import Footer from "./Footer";
+import Header from "./Header";
+
+
 
 const Home: React.FC = () => {
+    const [todo, setTodo] = useState<Todo[] | null>(null);
+
+    useEffect(() => {
+        getAllTodo();
+      }, []);
+
+
+      const getAllTodo = async () => {  //get to-do item
+        try {
+
+          const response = await axios.get("https://localhost:7035/api/TodoItem/get-all-unavailable-todo-items");
+          console.log(response.data);
+          console.log(response);
+          setTodo(response.data);
+
+        } catch (error) {
+          console.error("Error Todo data:", error);
+        }
+      }
+      
 return(
     <>
-    <nav className="n1 navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            <img src='/image/logo.png' alt="Logo" width="300" height="100" className="d-inline-block align-text-top" />
+    <Header/>
+   
+      <div className="text-center my-4">
+        <h2 className="k1">TO-DO</h2>
+      </div>
 
-          </a>
-          <p className='p1 '>Todo Application</p>
-        </div>
-      </nav>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary mb-5 sticky-top" data-bs-theme="dark">
-        <div className="container-fluid">
-          <a className="navbar-brand fw-bold" href="#">Expernetic</a>
+      <table className="custom-table table table-success table-striped  mb-5 ">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Completed</th>
+            <th>Update</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {todo && todo.map((emp) =>
+            <tr>
+              <td>{emp.title}</td>
+              <td>{emp.description}</td>
+              
+              
+              <td>
+                <button type='button' className="btn btn-outline-success"  >
+                  Completed
+                </button>
+              </td>
 
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+              <td>
+                <Link type='button' className="btn btn-outline-primary" to={""} >
+                  Update
+                </Link>
+              </td>
+
+            </tr>
 
 
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav me-3">
-              <li className="nav-item">
-                <Link className="nav-link" to={"/"} > Home </Link>
-              </li>
-             
-            </ul>
-          </div>
-        </div>
-      </nav>
+          )}
 
-      <div className="container-fluid">
-                <div className='d2 row'>
-                    <div className=' text-center'>
-                        <img src='/image/logo.png' alt="Logo" width="200" height="100" className="d-inline-block align-text-top" />
-                    </div>
-                </div>
+        </tbody>
+      </table>
 
-      <div className='d3 row'>
-                    <div className=' text-center'>
-                        <p className='mt-2'>Copyright © 2024 - All Rights Reserved. Concept, Design & Development By Hiran</p>
-                    </div>
-                </div>
-           
-
-                </div>
+     <Footer/>
 
     </>
 )
