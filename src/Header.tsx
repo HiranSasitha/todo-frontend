@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -24,6 +24,9 @@ const Header = () => {
             <ul className="navbar-nav me-3">
               <li className="nav-item">
                 <Link className="nav-link" to={"/"}>Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={"/add-todo"}>Add Todo</Link>
               </li>
             </ul>
           </div>
