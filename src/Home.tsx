@@ -71,6 +71,18 @@ const Home: React.FC = () => {
             console.error("Error Todo data:", error);
         }
     }
+
+    const deleteTodo = async(id:number) => {
+        //delete todo
+      try {
+
+          const response = await axios.delete(`https://localhost:7035/api/TodoItem/delete-todo-${id}`);
+          window.location.reload()  // reload page
+
+      } catch (error) {
+          console.error("Error Todo data:", error);
+      }
+  }
         
     
 
@@ -98,6 +110,7 @@ const Home: React.FC = () => {
                         <th>Description</th>
                         <th>Completed</th>
                         <th>Update</th>
+                        <th>Delete</th>
 
                     </tr>
                 </thead>
@@ -118,6 +131,12 @@ const Home: React.FC = () => {
                                 <Link type='button' className="btn btn-outline-primary" to={""} >
                                     Update
                                 </Link>
+                            </td>
+
+                            <td>
+                                <button type='button' onClick={() => deleteTodo(emp.id)} className="btn btn-outline-danger"  >
+                                    Delete
+                                </button>
                             </td>
 
                         </tr>
