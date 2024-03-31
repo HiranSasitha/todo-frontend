@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./Header";
 import axios from "axios";
+import Footer from "./Footer";
 
 const AddTodo: React.FC = () => {
 
@@ -62,6 +63,8 @@ const AddTodo: React.FC = () => {
                     </form>
                 </div>
             </div>
+
+            <Footer/>
 
         </>
     )

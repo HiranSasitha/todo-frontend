@@ -5,6 +5,7 @@ import "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import AddTodo from './AddTodo';
+import UpdateTaskItem from './UpdateTaskItem';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     <Routes>
     <Route index element ={<Home/>}/>
     <Route path='/add-todo' element ={<AddTodo/>}/>
+    <Route path='/update-todo/:id' element ={<UpdateTaskItem/>}/>
 
 
     </Routes>

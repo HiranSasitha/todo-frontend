@@ -128,7 +128,7 @@ const Home: React.FC = () => {
                             </td>
 
                             <td>
-                                <Link type='button' className="btn btn-outline-primary" to={""} >
+                                <Link type='button' className="btn btn-outline-primary" to={`/update-todo/${emp.id}`} >
                                     Update
                                 </Link>
                             </td>
