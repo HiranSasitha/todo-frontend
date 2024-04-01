@@ -54,7 +54,7 @@ const UpdateTaskItem: React.FC = () => {
         const response = await axios.put(`https://localhost:7035/api/TodoItem/update-todo-item/${id}`, data);
         if (response.status === 200) {
             alert("Success Update Task");
-            navigate("/");
+            navigate("/home");
         }else{
             alert("Faild Update Task");
             window.location.reload();

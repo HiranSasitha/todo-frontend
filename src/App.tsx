@@ -8,6 +8,8 @@ import AddTodo from './AddTodo';
 import UpdateTaskItem from './UpdateTaskItem';
 import CompletedTask from './CompletedTask';
 import RegisterUser from './auth/RegisterUser';
+import Login from './auth/Loging';
+import ProtectedRoutes from './utils/ProtectedRoutes';
 
 
 function App() {
@@ -15,12 +17,14 @@ function App() {
     <div className="App">
     <BrowserRouter>
     <Routes>
-    <Route index element ={<RegisterUser/>}/>
+    <Route index element ={<Login/>}/>
+    <Route path='/auth/register_user' element ={<RegisterUser/>}/>
+    <Route  element = {<ProtectedRoutes/>}>
     <Route path='/home' element ={<Home/>}/>
     <Route path='/add-todo' element ={<AddTodo/>}/>
     <Route path='/update-todo/:id' element ={<UpdateTaskItem/>}/>
     <Route path='/completed-todo' element ={<CompletedTask/>}/>
-
+    </Route>
 
     </Routes>
     
