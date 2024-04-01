@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, ChangeEvent, FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const RegisterUser: React.FC = () => {
     const [username, setUsername] = useState<string>("");
@@ -45,7 +45,7 @@ const RegisterUser: React.FC = () => {
 
             if (response.status === 200) {
                 alert("Success Register");
-                navigate("/auth/login");
+                navigate("/");
             } else {
                 alert("Register Failed");
                 window.location.reload();
@@ -81,6 +81,9 @@ const RegisterUser: React.FC = () => {
                         Register
                     </button>
                 </form>
+            </div>
+            <div className="text-center mb-5 fw-bold">
+                <Link className="mx-4 text-decoration-none " to={"/"}>Loging</Link>
             </div>
         </>
     );

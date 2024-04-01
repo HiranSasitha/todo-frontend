@@ -1,7 +1,13 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+    const navigate = useNavigate();
+
+    const handleLogOut = ()=>{
+        localStorage.removeItem("token");
+        navigate("/");
+      }
   return (
     <>
       <nav className="n1 navbar bg-dark border-bottom border-body" data-bs-theme="dark">
@@ -30,6 +36,11 @@ const Header = () => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to={"/add-todo"}>Add Todo</Link>
+              </li>
+              <li className="nav-item">
+                <button className="nav-link" onClick={handleLogOut}>
+                  Log Out
+                </button>
               </li>
             </ul>
           </div>
